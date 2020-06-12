@@ -1,0 +1,27 @@
+<!Doctype html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <title> Spring MVC Application - Edit Post</title>
+</head>
+
+<header th:replace="layout :: logged-in"></header>
+
+<body>
+<h2>Edit Post</h2>
+<form th:method="put" th:action="@{/editPost(postId=${post.id})}">
+    <div>Post Title:</div>
+    <div><input type="text" name="title" size="70" th:value="${post.title}" /></div>
+    <div>Description:</div>
+    <div><textarea rows="7" cols="100" name="body" th:text="${post.body}"></textarea> </div>
+<!--    <div>-->
+<!--        <article th:each="cat : ${session.categories}">-->
+<!--            <input type="checkbox" name="${cat.category}" value="${cat.category}" />-->
+<!--            <label th:text="${cat.category}"></label>-->
+<!--        </article>-->
+<!--    </div>-->
+
+    <div><input type="submit" value="Submit" /></div>
+
+</form>
+</body>
+</html>

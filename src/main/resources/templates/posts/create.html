@@ -1,0 +1,20 @@
+<!Doctype html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <title> Spring MVC Application - Create Post</title>
+</head>
+
+<header th:replace="layout :: logged-in"></header>
+
+<body>
+    <h2>Create New Post</h2>
+    <form method="post" th:action="@{/posts/create}">
+        <div>Post Title:</div>
+        <div><input type="text" id="title" name="title" /></div>
+        <div>Description:</div>
+        <div><textarea rows="7" cols="100" name="body"></textarea> </div>
+        <div><input type="submit" value="Submit" /></div>
+
+    </form>
+</body>
+</html>

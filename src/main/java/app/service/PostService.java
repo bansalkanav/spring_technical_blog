@@ -1,35 +1,47 @@
 package app.service;
 
 import app.model.Post;
+import app.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PostService {
-    public ArrayList<Post> getAllPosts(){
-        ArrayList<Post> posts = new ArrayList<>();
 
-        Post post1 = new Post();
-        post1.setTitle("My first Spring boot web application");
-        post1.setBody("Post Body 1");
-        post1.setDate(new Date());
+    @Autowired
+    private PostRepository repository;
 
-        Post post2 = new Post();
-        post2.setTitle("Machine Learning taking over the world");
-        post2.setBody("Post Body 2");
-        post2.setDate(new Date());
+    public List<Post> getAllPosts() {
+        return repository.getAllPosts();
 
-        Post post3 = new Post();
-        post3.setTitle("Pubg banned hackers");
-        post3.setBody("Post Body 3");
-        post3.setDate(new Date());
-
-        posts.add(post1);
-        posts.add(post2);
-        posts.add(post3);
-
-        return posts;
     }
+
+    public Post getOnePost(){
+        return repository.getLatestPost();
+    }
+
+    public void createPost(Post newPost){
+        newPost.setDate(new Date());
+        repository.createPost(newPost);
+    }
+
+    public Post getPost(Integer postId){
+        return repository.getPost(postId);
+    }
+
+     public void updatePost(Post updatedPost){
+        updatedPost.setDate(new Date());
+        repository.updatePost(updatedPost);
+     }
+
+     public void deletePost(Integer postId){
+         System.out.println("****** Delete Service ******");
+         repository.deletePost(postId);
+     }
+
 }
